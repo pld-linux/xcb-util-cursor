@@ -1,13 +1,13 @@
 Summary:	XCB util-cursor module
 Summary(pl.UTF-8):	Moduł XCB util-cursor
 Name:		xcb-util-cursor
-Version:	0.1.2
+Version:	0.1.3
 Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	http://xcb.freedesktop.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	88e70d92ff5616d406ce5b1b62e0c58b
-URL:		http://xcb.freedesktop.org/XcbUtil/
+Source0:	https://xcb.freedesktop.org/dist/%{name}-%{version}.tar.bz2
+# Source0-md5:	6ac3b17cba51aaaa36ba035a53527214
+URL:		https://xcb.freedesktop.org/XcbUtil/
 BuildRequires:	libxcb-devel >= 1.4
 BuildRequires:	pkgconfig
 BuildRequires:	xcb-proto >= 1.6
