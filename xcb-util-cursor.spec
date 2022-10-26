@@ -1,20 +1,23 @@
 Summary:	XCB util-cursor module
 Summary(pl.UTF-8):	Moduł XCB util-cursor
 Name:		xcb-util-cursor
-Version:	0.1.3
+Version:	0.1.4
 Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	https://xcb.freedesktop.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	6ac3b17cba51aaaa36ba035a53527214
+Source0:	https://xcb.freedesktop.org/dist/%{name}-%{version}.tar.xz
+# Source0-md5:	0d244518ad54b886413fe782235d6210
 URL:		https://xcb.freedesktop.org/XcbUtil/
+BuildRequires:	gperf
 BuildRequires:	libxcb-devel >= 1.4
 BuildRequires:	pkgconfig
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xcb-proto >= 1.6
 BuildRequires:	xcb-util-devel >= 0.3.9
 BuildRequires:	xcb-util-image-devel
 BuildRequires:	xcb-util-renderutil-devel
 BuildRequires:	xorg-proto-xproto-devel >= 7.0.8
+BuildRequires:	xz
 Requires:	libxcb >= 1.4
 Requires:	xcb-util >= 0.3.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -83,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libxcb-cursor.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -91,14 +97,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog NEWS README
+%doc COPYING ChangeLog NEWS README.md
 %attr(755,root,root) %{_libdir}/libxcb-cursor.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libxcb-cursor.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxcb-cursor.so
-%{_libdir}/libxcb-cursor.la
 %{_includedir}/xcb/xcb_cursor.h
 %{_pkgconfigdir}/xcb-cursor.pc
 
