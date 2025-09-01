@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static libraries
+
 Summary:	XCB util-cursor module
 Summary(pl.UTF-8):	Moduł XCB util-cursor
 Name:		xcb-util-cursor
@@ -78,7 +82,8 @@ Statyczna biblioteka XCB util-cursor.
 
 %build
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -108,6 +113,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xcb/xcb_cursor.h
 %{_pkgconfigdir}/xcb-cursor.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libxcb-cursor.a
+%endif
